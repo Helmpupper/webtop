@@ -1,10 +1,10 @@
-FROM ghcr.io/linuxserver/baseimage-selkies:ubuntunoble
+FROM helmpup/ubuntubase:dev
 
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
-LABEL maintainer="thelamer"
+LABEL build_version="version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="helmpup"
 ARG DEBIAN_FRONTEND="noninteractive"
 
 # title
@@ -68,5 +68,5 @@ RUN \
 COPY /root /
 
 # ports and volumes
-EXPOSE 3000
+EXPOSE 600
 VOLUME /config
