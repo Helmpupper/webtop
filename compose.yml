@@ -2,15 +2,22 @@
 services:
     webtop:
         container_name: webtop
+        env_file: 
+            - .env
         environment:
             - PUID=1000
             - PGID=1000
             - TZ=Etc/UTC
+            - DOCKER_MODS=zorbatherainy/tailscale-docker-mod:latest
+            - TAILSCALE_STATE_DIR=${TAILSCALE_STATE_DIR}
+            - TAILSCALE_AUTHKEY=${TAILSCALE_AUTHKEY}
+            - TAILSCALE_HOSTNAME=${TAILSCALE_HOSTNAME}
         ports:
             - 3000:3000
             - 3001:3001
         volumes:
             - ./data:/config
+            - ./data/tailscale:/var/lib/tailscale
         shm_size: 1gb
         restart: unless-stopped
         build: .
