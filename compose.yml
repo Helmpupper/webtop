@@ -1,0 +1,17 @@
+---
+services:
+    webtop:
+        container_name: webtop
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Etc/UTC
+        ports:
+            - 3000:3000
+            - 3001:3001
+        volumes:
+            - ./data:/config
+        shm_size: 1gb
+        restart: unless-stopped
+        build: .
+        image: lscr.io/linuxserver/webtop:latest
